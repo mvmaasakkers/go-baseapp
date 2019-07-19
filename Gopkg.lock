@@ -11,6 +11,17 @@
 
 [[projects]]
   branch = "master"
+  digest = "1:1f38351b31abb489c0792be780589d3cb297c3b087eb0935e4f1284dd9feded0"
+  name = "github.com/RobotsAndPencils/go-saml"
+  packages = [
+    ".",
+    "util",
+  ]
+  pruneopts = "NUT"
+  revision = "fb13cb52a46b55a9f20e6d497658dd494c7c1ef1"
+
+[[projects]]
+  branch = "master"
   digest = "1:dd49560573b3eeb2993a036b2dfebf301b7ed2c9220a77322b0747f0257cebdc"
   name = "github.com/bluekeyes/hatpear"
   packages = ["."]
@@ -24,6 +35,22 @@
   pruneopts = "NUT"
   revision = "8991bc29aa16c548c550c7ff78260e27b9ab7c73"
   version = "v1.1.1"
+
+[[projects]]
+  branch = "master"
+  digest = "1:263f9b0a0bcbfff9d5e7d9f2aa11f53995d98214fe0fb97e429e7a5f4534a0f9"
+  name = "github.com/kardianos/osext"
+  packages = ["."]
+  pruneopts = "NUT"
+  revision = "2bc1f35cddc0cc527b4bc3dce8578fc2a6c11384"
+
+[[projects]]
+  branch = "master"
+  digest = "1:16bbae9910129be5a18b951eabacd54414d3faea094dfab92bb3c84884d46b11"
+  name = "github.com/nu7hatch/gouuid"
+  packages = ["."]
+  pruneopts = "NUT"
+  revision = "179d4d0c4d8d407a32af483c2354df1d2c91e6c3"
 
 [[projects]]
   digest = "1:5cf3f025cbee5951a4ee961de067c8a89fc95a5adabead774f82822efabab121"
@@ -113,6 +140,7 @@
   analyzer-version = 1
   input-imports = [
     "github.com/DataDog/datadog-go/statsd",
+    "github.com/RobotsAndPencils/go-saml",
     "github.com/bluekeyes/hatpear",
     "github.com/pkg/errors",
     "github.com/rcrowley/go-metrics",
