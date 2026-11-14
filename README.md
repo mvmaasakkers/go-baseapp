@@ -1,3 +1,7 @@
+<p align="right">
+<a href="https://autorelease.general.dmz.palantir.tech/palantir/go-baseapp"><img src="https://img.shields.io/badge/Perform%20an-Autorelease-success.svg" alt="Autorelease"></a>
+</p>
+
 # go-baseapp [![GoDoc](https://godoc.org/github.com/palantir/go-baseapp?status.svg)](http://godoc.org/github.com/palantir/go-baseapp)
 
 A minimal, not-quite-a-framework for building web applications on top of the
@@ -25,7 +29,7 @@ Create a `baseapp.Server` object, register your handlers, and start the server:
 func main() {
     config := baseapp.HTTPConfig{
         Address: "127.0.0.1",
-        Port:    "8000",
+        Port:    8000,
     }
     loggingConfig := baseapp.LoggingConfig{
         Pretty: true,
@@ -155,11 +159,25 @@ If enabled, the server emits the following metrics:
 | `server.requests.3xx` | `counter` | like `server.requests`, but only counting 3XX status codes |
 | `server.requests.4xx` | `counter` | like `server.requests`, but only counting 4XX status codes |
 | `server.requests.5xx` | `counter` | like `server.requests`, but only counting 5XX status codes |
+| `server.requests.latency` | `timer` | the latency of requests handled by the server |
+| `server.requests.2xx.latency` | `timer` | like `server.requests.latency`, but only counting 2XX status codes |
+| `server.requests.3xx.latency` | `timer` | like `server.requests.latency`, but only counting 3XX status codes |
+| `server.requests.4xx.latency` | `timer` | like `server.requests.latency`, but only counting 4XX status codes |
+| `server.requests.5xx.latency` | `timer` | like `server.requests.latency`, but only counting 5XX status codes |
 | `server.goroutines` | `gauge` | the number of active goroutines |
-| `server.mem.used` | `gauge` | the amount of memory used by the process |
+| `server.mem.used` | `gauge` | the amount of memory used by the process in bytes |
 
-The `baseapp/datadog` package provides an easy way to publish metrics to
-Datadog. Other aggregators can be configured with custom code in a similar way.
+Note that the `server.requests.latency` timers may be used instead of the basic
+`server.requests` counters, as they include counts and rates in addition to the
+latency distribution.
+
+The `appmetrics/emitter/datadog` package provides an easy way to publish metrics to
+Datadog. Timer metrics are reported in nanoseconds. When exporting these
+metrics from the registry, you may wish to convert the units, for instance by
+calling `datadog.SetTimerUnit(time.Millisecond)`.
+
+The `appmetrics/emitter/prometheus` package provids an easy way to expose
+metrics on a Prometheus-compatible endpoint.
 
 ## Contributing
 
